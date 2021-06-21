@@ -1,0 +1,6 @@
+osman;yaycioglu;MALE;200;90
+nehir;yaycioglu;FEMALE;180;60
+su;yaycioglu;FEMALE;155;40
+nil;yaycioglu;FEMALE;178;65
+mehmet;test;MALE;190;90
+
