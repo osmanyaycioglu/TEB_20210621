@@ -1,11 +1,11 @@
-package com.training.java.collections;
+package com.training.java.stream;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-public class CollectionRun {
+public class StreamRun {
 
     public static void main(final String[] args) {
         List<String> asListLoc = Arrays.asList("osman",

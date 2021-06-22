@@ -1,4 +1,4 @@
-package com.training.java.collections;
+package com.training.java.stream;
 
 
 public enum EGender {
