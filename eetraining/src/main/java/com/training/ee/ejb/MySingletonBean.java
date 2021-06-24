@@ -10,4 +10,8 @@ public class MySingletonBean {
     public MySingletonBean() {
     }
 
+    public String hello() {
+        return "Hello";
+    }
+
 }

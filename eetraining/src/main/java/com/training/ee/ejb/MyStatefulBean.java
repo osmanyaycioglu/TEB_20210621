@@ -2,7 +2,13 @@ package com.training.ee.ejb;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+import javax.ejb.EJB;
 import javax.ejb.LocalBean;
+import javax.ejb.PostActivate;
+import javax.ejb.PrePassivate;
+import javax.ejb.Remove;
 import javax.ejb.Stateful;
 
 @Stateful
@@ -13,9 +19,12 @@ public class MyStatefulBean implements Serializable {
 
     private int               toplam;
 
-    public MyStatefulBean() {
-    }
+    @EJB
+    private MySingletonBean   mySingletonBean;
 
+    public MyStatefulBean() {
+        // this.mySingletonBean.hello(); Nullpointer
+    }
 
     public int calcAdd(final int a,
                        final int b) {
@@ -34,6 +43,27 @@ public class MyStatefulBean implements Serializable {
 
     public int getToplam() {
         return this.toplam;
+    }
+
+    @PostConstruct
+    public void init() {
+        this.mySingletonBean.hello();
+    }
+
+    @PreDestroy
+    public void destroy() {
+    }
+
+    @Remove
+    public void remove() {
+    }
+
+    @PrePassivate
+    public void preWrite() {
+    }
+
+    @PostActivate
+    public void preRead() {
     }
 
 }
