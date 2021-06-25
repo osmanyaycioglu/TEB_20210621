@@ -22,6 +22,8 @@ public class MyErrorHandler implements ExceptionMapper<ConstraintViolationExcept
                                            .setCause(150));
         }
         return Response.status(Status.BAD_REQUEST)
+                       .header("Content-Type",
+                               "application/json")
                        .entity(rootLoc)
                        .header("error",
                                "error")

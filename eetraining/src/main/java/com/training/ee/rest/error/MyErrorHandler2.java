@@ -12,6 +12,9 @@ public class MyErrorHandler2 implements ExceptionMapper<IllegalArgumentException
     public Response toResponse(final IllegalArgumentException exceptionParam) {
 
         return Response.status(Status.BAD_REQUEST)
+                       .header("Content-Type",
+                               "application/json")
+
                        .entity(new ErrorObj().setMessage(exceptionParam.getMessage())
                                              .setCause(300))
                        .header("error",
