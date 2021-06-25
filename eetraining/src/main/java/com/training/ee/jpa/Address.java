@@ -1,5 +1,7 @@
 package com.training.ee.jpa;
 
+import java.io.Serializable;
+
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,19 +11,20 @@ import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-public class Address {
+public class Address implements Serializable {
 
+    private static final long serialVersionUID = 6007690975705418279L;
     @Id
     @GeneratedValue
-    private Long     addressId;
-    private String   city;
-    private String   street;
+    private Long              addressId;
+    private String            city;
+    private String            street;
 
     @OneToOne
     @JoinColumn(name = "empid")
     @XmlTransient
     @JsonbTransient
-    private Employee employee;
+    private Employee          employee;
 
     public String getCity() {
         return this.city;

@@ -1,5 +1,6 @@
 package com.training.ee.jpa;
 
+import java.io.Serializable;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,25 +24,26 @@ import javax.persistence.Table;
                             query = "select e from Employee e where e.name=?1 and e.surname=?2")
 
 })
-public class Employee {
+public class Employee implements Serializable {
 
+    private static final long serialVersionUID = 938209481338743360L;
     @Id
     @GeneratedValue
-    private Long           employeeId;
+    private Long              employeeId;
     @Column(name = "isim")
-    private String         name;
-    private String         surname;
-    private int            height;
-    private int            weight;
+    private String            name;
+    private String            surname;
+    private int               height;
+    private int               weight;
 
     @Embedded
-    private EmployeeDetail employeeDetail;
+    private EmployeeDetail    employeeDetail;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
-    private Address        address;
+    private Address           address;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
-    private List<Phone>    phones;
+    private List<Phone>       phones;
 
     public String getName() {
         return this.name;
@@ -105,6 +107,27 @@ public class Employee {
 
     public void setPhones(final List<Phone> phonesParam) {
         this.phones = phonesParam;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee [employeeId="
+               + this.employeeId
+               + ", name="
+               + this.name
+               + ", surname="
+               + this.surname
+               + ", height="
+               + this.height
+               + ", weight="
+               + this.weight
+               + ", employeeDetail="
+               + this.employeeDetail
+               + ", address="
+               + this.address
+               + ", phones="
+               + this.phones
+               + "]";
     }
 
 

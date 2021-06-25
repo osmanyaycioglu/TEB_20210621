@@ -1,15 +1,18 @@
 package com.training.ee.jpa;
 
+import java.io.Serializable;
+
 import javax.persistence.Embeddable;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 
 @Embeddable
-public class EmployeeDetail {
+public class EmployeeDetail implements Serializable {
 
-    private String  nickName;
+    private static final long serialVersionUID = -3345354022881441867L;
+    private String            nickName;
     @Enumerated(EnumType.STRING)
-    private EStatus status;
+    private EStatus           status;
 
     public String getNickName() {
         return this.nickName;

@@ -1,5 +1,7 @@
 package com.training.ee.jpa;
 
+import java.io.Serializable;
+
 import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,18 +10,19 @@ import javax.persistence.ManyToOne;
 import javax.xml.bind.annotation.XmlTransient;
 
 @Entity
-public class Phone {
+public class Phone implements Serializable {
 
+    private static final long serialVersionUID = 1191562020705943245L;
     @Id
     @GeneratedValue
-    private Long     phoneId;
-    private String   name;
-    private String   number;
+    private Long              phoneId;
+    private String            name;
+    private String            number;
 
     @ManyToOne
     @XmlTransient
     @JsonbTransient
-    private Employee employee;
+    private Employee          employee;
 
     public String getName() {
         return this.name;
