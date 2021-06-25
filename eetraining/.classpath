@@ -13,6 +13,6 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="C:/training/javaEE/server/wildfly-19.1.0.Final/modules/system/layers/base/javax/json/bind/api/main/jakarta.json.bind-api-1.0.2.jar"/>
+	<classpathentry kind="lib" path="C:/training/javaEE/server/wildfly-19.1.0.Final/modules/system/layers/base/javax/json/bind/api/main/jakarta.json.bind-api-1.0.2.jar" sourcepath="C:/Users/os2ma/.m2/repository/jakarta/json/bind/jakarta.json.bind-api/1.0.2/jakarta.json.bind-api-1.0.2-sources.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

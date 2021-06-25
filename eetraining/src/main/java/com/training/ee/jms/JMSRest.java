@@ -5,6 +5,8 @@ import javax.inject.Inject;
 import javax.jms.JMSContext;
 import javax.jms.Queue;
 import javax.jms.Topic;
+import javax.json.bind.Jsonb;
+import javax.json.bind.JsonbBuilder;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -60,6 +62,21 @@ public class JMSRest {
         this.jmsContext.createProducer()
                        .send(this.objectQueue,
                              emp);
+        return "OK";
+    }
+
+    @Path("/send/text/queue")
+    @Produces("text/plain")
+    @POST
+    @Consumes({
+                MediaType.APPLICATION_JSON
+    })
+    public String sendToTextQueue(final Employee emp) {
+        Jsonb jsonb = JsonbBuilder.create();
+        String jsonLoc = jsonb.toJson(emp);
+        this.jmsContext.createProducer()
+                       .send(this.queue,
+                             jsonLoc);
         return "OK";
     }
 

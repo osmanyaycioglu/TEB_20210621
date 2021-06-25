@@ -14,7 +14,17 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PostLoad;
+import javax.persistence.PostPersist;
+import javax.persistence.PostRemove;
+import javax.persistence.PostUpdate;
+import javax.persistence.PrePersist;
+import javax.persistence.PreRemove;
+import javax.persistence.PreUpdate;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "calisan")
@@ -30,20 +40,56 @@ public class Employee implements Serializable {
     @Id
     @GeneratedValue
     private Long              employeeId;
-    @Column(name = "isim")
+    @Column(name = "isim", length = 20)
+    //@JsonbProperty("isim")
     private String            name;
+    @Size(max = 20)
     private String            surname;
+    @Max(300)
+    @Min(50)
     private int               height;
     private int               weight;
 
+    @PrePersist
+    //@PreUpdate
+    public void yazmaOncesi() {
+        this.surname = "soy:" + this.surname;
+    }
+
+    @PreUpdate
+    public void updateOncesi() {
+        this.surname = "soy:" + this.surname;
+    }
+
+    @PreRemove
+    public void preRemove() {
+
+    }
+
+    @PostLoad
+    public void aldiktanSonra() {
+        this.surname = this.surname.substring(4);
+    }
+
+    @PostPersist
+    @PostUpdate
+    public void posts() {
+        this.surname = this.surname.substring(4);
+    }
+
+    @PostRemove
+    public void postRemove() {
+
+    }
+
     @Embedded
-    private EmployeeDetail    employeeDetail;
+    private EmployeeDetail employeeDetail;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
-    private Address           address;
+    private Address        address;
 
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, mappedBy = "employee")
-    private List<Phone>       phones;
+    private List<Phone>    phones;
 
     public String getName() {
         return this.name;

@@ -5,4 +5,7 @@
  <alternatives>
   <class>com.training.ee.cdi.MyProcess4</class>
  </alternatives>
+ <interceptors>
+  <class>com.training.ee.cdi.interceptor.LogInterceptor</class>
+ </interceptors>
 </beans>
